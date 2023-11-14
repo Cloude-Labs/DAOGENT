@@ -3,17 +3,31 @@ const isProd = process.env.NODE_ENV === 'production';
 module.exports = {
   assetPrefix: isProd ? '/DAOGENT/' : '',
   images: {
-    unoptimized: true,
+    unoptimized: false, // Enabled Next.js native image optimization
+    domains: ['your-cdn.com'], // Allow images from an external CDN
   },
-  trailingSlash: true, // Added trailingSlash for static site export compatibility
-  generateEtags: false, // Disabled ETag generation for improved caching
-  compress: true, // Enabled gzip compression for better performance
-  poweredByHeader: false, // Added to disable "X-Powered-By" header for security
+  trailingSlash: true,
+  generateEtags: false,
+  compress: true,
+  poweredByHeader: false,
+  async headers() {
+    return [
+      {
+        source: '/_next/static/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable', // Long-term caching for static files
+          },
+        ],
+      },
+    ];
+  },
   async redirects() {
     return [
       {
         source: '/old-path',
-        destination: '/new-path', // Redirect old URL to a new URL
+        destination: '/new-path',
         permanent: true,
       },
     ];
@@ -22,7 +36,7 @@ module.exports = {
     return [
       {
         source: '/:slug',
-        destination: '/404', // Redirect any unmatched paths to the custom 404 page
+        destination: '/404',
       },
     ];
   },
