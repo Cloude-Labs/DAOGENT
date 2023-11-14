@@ -10,16 +10,12 @@ export default function Home() {
       <Head>
         <title>DAOGENT - AI-Powered DAO Companion</title>
         <meta name="description" content="AI-powered governance for decentralized communities." />
-        <meta property="og:title" content="DAOGENT - AI-Powered DAO Companion" />
-        <meta property="og:description" content="Enhancing DAO governance with AI-powered automation and insights." />
-        <meta property="og:image" content="/banner.jpg" />
-        <meta property="og:url" content="https://your-daogent-url.com" />
       </Head>
 
       <Navbar />
 
       <header className="hero">
-        <Image src="/banner.jpg" alt="DAOGENT Banner" width={1500} height={500} />
+        <Image src="/banner.jpg" alt="DAOGENT Banner" width={1500} height={500} priority />
         <h1>DAOGENT</h1>
         <p>The AI-Powered Governance Assistant for DAOs</p>
       </header>
@@ -32,11 +28,11 @@ export default function Home() {
       <section className="features">
         <h2>Key Features</h2>
         <ul>
-          <li aria-label="Automated Discussion Summaries">📌 Automated Discussion Summaries</li>
-          <li aria-label="Proposal Tracking & Notifications">📌 Proposal Tracking & Notifications</li>
-          <li aria-label="Sentiment Analysis">📌 Sentiment Analysis</li>
-          <li aria-label="Participation Incentives">📌 Participation Incentives</li>
-          <li aria-label="Multi-Platform Integration">📌 Multi-Platform Integration</li>
+          <li>📌 Automated Discussion Summaries</li>
+          <li>📌 Proposal Tracking & Notifications</li>
+          <li>📌 Sentiment Analysis</li>
+          <li>📌 Participation Incentives</li>
+          <li>📌 Multi-Platform Integration</li>
         </ul>
       </section>
 
