@@ -4,16 +4,19 @@
     "build": "next build",
     "export": "next export",
     "deploy": "gh-pages -d out",
-    "predeploy": "npm run clean && npm run build && npm run export && npm run version", // Updated predeploy script to include version update
-    "clean": "rimraf out", // Improved clean script for cross-platform compatibility
-    "postdeploy": "echo 'Deployment successful!'", // Added postdeploy script for confirmation
-    "version": "npm version patch", // Added versioning script to bump version before deploying
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx", // Added lint script for code quality
-    "start": "next dev" // Added start script to run the app in development
+    "predeploy": "npm run clean && npm run lint && npm run format && npm run build && npm run export && npm run version",
+    "clean": "rimraf out",
+    "postdeploy": "echo 'DAOGENT successfully deployed!'", 
+    "version": "npm version patch",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "format": "prettier --write .",
+    "start": "next dev"
   },
   "devDependencies": {
-    "rimraf": "latest", // Added rimraf for consistent file removal
-    "gh-pages": "^3.2.3", // Added gh-pages for deployment
-    "eslint": "^8.0.0" // Added ESLint for linting JavaScript/TypeScript code
+    "rimraf": "latest",
+    "gh-pages": "^3.2.3",
+    "eslint": "^8.0.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.0.0"
   }
 }
