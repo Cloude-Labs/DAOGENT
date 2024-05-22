@@ -3,8 +3,8 @@ const isProd = process.env.NODE_ENV === 'production';
 module.exports = {
   assetPrefix: isProd ? '/DAOGENT/' : '',
   images: {
-    unoptimized: false, // Enabled Next.js native image optimization
-    domains: ['your-cdn.com'], // Allow images from an external CDN
+    unoptimized: false,
+    domains: ['your-cdn.com'],
   },
   trailingSlash: true,
   generateEtags: false,
@@ -13,11 +13,23 @@ module.exports = {
   async headers() {
     return [
       {
-        source: '/_next/static/:path*',
+        source: '/(.*)',
         headers: [
           {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable', // Long-term caching for static files
+            key: 'Content-Security-Policy',
+            value: "default-src 'self'; img-src 'self' data: https://your-cdn.com; script-src 'self' 'unsafe-inline';",
+          },
+          {
+            key: 'X-Frame-Options',
+            value: 'DENY',
+          },
+          {
+            key: 'Referrer-Policy',
+            value: 'strict-origin-when-cross-origin',
+          },
+          {
+            key: 'Strict-Transport-Security',
+            value: 'max-age=31536000; includeSubDomains; preload',
           },
         ],
       },
