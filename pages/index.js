@@ -10,6 +10,10 @@ export default function Home() {
       <Head>
         <title>DAOGENT - AI-Powered DAO Companion</title>
         <meta name="description" content="AI-powered governance for decentralized communities." />
+        <meta property="og:title" content="DAOGENT - AI-Powered DAO Companion" />
+        <meta property="og:description" content="Enhancing DAO governance with AI-powered automation and insights." />
+        <meta property="og:image" content="/banner.jpg" />
+        <meta property="og:url" content="https://your-daogent-url.com" />
       </Head>
 
       <Navbar />
@@ -28,11 +32,11 @@ export default function Home() {
       <section className="features">
         <h2>Key Features</h2>
         <ul>
-          <li>📌 Automated Discussion Summaries</li>
-          <li>📌 Proposal Tracking & Notifications</li>
-          <li>📌 Sentiment Analysis</li>
-          <li>📌 Participation Incentives</li>
-          <li>📌 Multi-Platform Integration</li>
+          <li aria-label="Automated Discussion Summaries">📌 Automated Discussion Summaries</li>
+          <li aria-label="Proposal Tracking & Notifications">📌 Proposal Tracking & Notifications</li>
+          <li aria-label="Sentiment Analysis">📌 Sentiment Analysis</li>
+          <li aria-label="Participation Incentives">📌 Participation Incentives</li>
+          <li aria-label="Multi-Platform Integration">📌 Multi-Platform Integration</li>
         </ul>
       </section>
 
@@ -40,26 +44,7 @@ export default function Home() {
         <h2>Get Involved</h2>
         <p>DAOGENT is open-source. Join us on GitHub and help shape the future of decentralized governance.</p>
         <a href="https://github.com/Cloude-Labs/DAOGENT" className="button">Join on GitHub</a>
-
-        {/* New "Join the Community" button */}
-        <a href="https://discord.gg/samplelink" className="button mt-4">Join the Community</a> {/* Added a new button */}
-      </section>
-
-      {/* New Contact Us Section */}
-      <section className="contact">
-        <h2>Contact Us</h2>
-        <form>
-          <label htmlFor="name">Name</label>
-          <input type="text" id="name" name="name" placeholder="Your Name" required />
-          
-          <label htmlFor="email">Email</label>
-          <input type="email" id="email" name="email" placeholder="Your Email" required />
-          
-          <label htmlFor="message">Message</label>
-          <textarea id="message" name="message" placeholder="Your Message" required></textarea>
-          
-          <button type="submit" className="button mt-4">Send Message</button>
-        </form>
+        <a href="https://discord.gg/samplelink" className="button mt-4">Join the Community</a>
       </section>
 
       <Footer />
