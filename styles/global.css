@@ -1,79 +1,41 @@
+:root {
+    --bg-color: #0a0a0f;
+    --text-color: white;
+    --primary-color: #162447;
+    --secondary-color: #0077b6;
+    --input-bg: #0d1b2a;
+    --input-text: white;
+}
+
+.dark-mode {
+    --bg-color: #ffffff;
+    --text-color: #0a0a0f;
+    --primary-color: #1f4068;
+    --secondary-color: #005f99;
+    --input-bg: #e5e5e5;
+    --input-text: black;
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #0a0a0f;
-    color: white;
-    text-align: center;
-    line-height: 1.6;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
 }
 
-/* Navbar Styles */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background: #162447;
-}
-
-.navbar h1 {
-    margin: 0;
-    font-size: 24px;
-}
-
-.navbar ul {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-    margin: 0;
-    padding: 0;
-}
-
-.navbar ul li {
-    display: inline;
-}
-
-.navbar ul li a {
-    text-decoration: none;
-    color: white;
-    font-size: 16px;
-    transition: color 0.3s ease-in-out;
-}
-
-.navbar ul li a:hover, .navbar ul li a:focus {
-    color: #0077b6;
-    outline: 2px solid #0077b6;
-}
-
-/* Mobile Navbar */
-.navbar-toggle {
-    display: none;
+/* Dark Mode Toggle */
+.toggle-dark-mode {
+    padding: 10px 15px;
     cursor: pointer;
-    font-size: 24px;
-    color: white;
-    background: none;
     border: none;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    font-size: 16px;
+    border-radius: 5px;
 }
 
-@media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .navbar-toggle {
-        display: block;
-        margin-bottom: 10px;
-    }
-
-    .navbar ul {
-        display: none;
-        flex-direction: column;
-        padding-top: 10px;
-    }
-
-    .navbar ul.active {
-        display: flex;
-    }
+.toggle-dark-mode:hover {
+    background-color: var(--primary-color);
 }
