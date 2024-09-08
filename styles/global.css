@@ -39,3 +39,45 @@ body {
 .toggle-dark-mode:hover {
     background-color: var(--primary-color);
 }
+
+/* Buttons */
+.button {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #1f4068;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.button:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+.button:active {
+    transform: translateY(1px);
+    background-color: #005f99;
+}
+
+/* Ripple Effect */
+.button::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s;
+    transform: translate(-50%, -50%) scale(0);
+    border-radius: 50%;
+}
+
+.button:active::before {
+    transform: translate(-50%, -50%) scale(1);
+}
