@@ -10,6 +10,7 @@
     "version": "npm version patch",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "format": "prettier --write .",
+    "prepare": "husky install",
     "start": "next dev"
   },
   "devDependencies": {
@@ -17,6 +18,12 @@
     "gh-pages": "^3.2.3",
     "eslint": "^8.0.0",
     "prettier": "^3.0.0",
-    "typescript": "^5.0.0"
+    "typescript": "^5.0.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^14.0.0"
+  },
+  "lint-staged": {
+    "*.ts": ["eslint --fix", "prettier --write"],
+    "*.tsx": ["eslint --fix", "prettier --write"]
   }
 }
