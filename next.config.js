@@ -10,11 +10,19 @@ module.exports = {
   generateEtags: false,
   compress: true,
   poweredByHeader: false,
+  experimental: {
+    optimizeCss: true, // Optimize CSS for smaller file sizes
+    modern: true, // Serve modern JavaScript
+  },
   async headers() {
     return [
       {
         source: '/(.*)',
         headers: [
+          {
+            key: 'Content-Encoding',
+            value: 'br', // Enable Brotli compression
+          },
           {
             key: 'Content-Security-Policy',
             value: "default-src 'self'; img-src 'self' data: https://your-cdn.com; script-src 'self' 'unsafe-inline';",
