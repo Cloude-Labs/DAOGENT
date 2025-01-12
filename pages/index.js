@@ -3,8 +3,37 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Image from 'next/image';
 import styles from '../styles/global.css';
+import { useState } from 'react';
 
 export default function Home() {
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [errors, setErrors] = useState({ name: '', email: '', message: '' });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setErrors({ ...errors, [e.target.name]: '' });
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    let newErrors = { name: '', email: '', message: '' };
+
+    if (!formData.name.trim()) newErrors.name = 'Name is required';
+    if (!formData.email.trim()) newErrors.email = 'Email is required';
+    if (!formData.message.trim()) newErrors.message = 'Message is required';
+
+    setErrors(newErrors);
+
+    if (Object.values(newErrors).some(error => error !== '')) {
+      return;
+    }
+
+    console.log("Form submitted:", formData);
+    alert("Your message has been sent!");
+    setFormData({ name: '', email: '', message: '' });
+  };
+
   return (
     <div className="dark:bg-gray-900 dark:text-white transition-colors duration-300">
       <Head>
@@ -20,27 +49,23 @@ export default function Home() {
         <p className="dark:text-gray-300">The AI-Powered Governance Assistant for DAOs</p>
       </header>
 
-      <section className="about dark:bg-gray-800 p-6 rounded-md">
-        <h2 className="dark:text-gray-200">What is DAOGENT?</h2>
-        <p className="dark:text-gray-300">DAOGENT is an AI-powered governance assistant that streamlines DAO operations, tracks discussions, and boosts participation.</p>
-      </section>
+      <section className="contact dark:bg-gray-800 p-6 rounded-md">
+        <h2 className="dark:text-gray-200">Contact Us</h2>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your Name" value={formData.name} onChange={handleInputChange} className="dark:bg-gray-900 dark:text-white" />
+          {errors.name && <p className="text-red-500">{errors.name}</p>}
 
-      <section className="features dark:bg-gray-800 p-6 rounded-md">
-        <h2 className="dark:text-gray-200">Key Features</h2>
-        <ul>
-          <li className="dark:text-gray-300">📌 Automated Discussion Summaries</li>
-          <li className="dark:text-gray-300">📌 Proposal Tracking & Notifications</li>
-          <li className="dark:text-gray-300">📌 Sentiment Analysis</li>
-          <li className="dark:text-gray-300">📌 Participation Incentives</li>
-          <li className="dark:text-gray-300">📌 Multi-Platform Integration</li>
-        </ul>
-      </section>
+          <label htmlFor="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="Your Email" value={formData.email} onChange={handleInputChange} className="dark:bg-gray-900 dark:text-white" />
+          {errors.email && <p className="text-red-500">{errors.email}</p>}
 
-      <section className="cta dark:bg-gray-900 p-6 rounded-md text-center">
-        <h2 className="dark:text-gray-200">Get Involved</h2>
-        <p className="dark:text-gray-300">DAOGENT is open-source. Join us on GitHub and help shape the future of decentralized governance.</p>
-        <a href="https://github.com/Cloude-Labs/DAOGENT" className="button dark:bg-blue-600 dark:hover:bg-blue-700">Join on GitHub</a>
-        <a href="https://discord.gg/samplelink" className="button mt-4 dark:bg-green-600 dark:hover:bg-green-700">Join the Community</a>
+          <label htmlFor="message">Message</label>
+          <textarea id="message" name="message" placeholder="Your Message" value={formData.message} onChange={handleInputChange} className="dark:bg-gray-900 dark:text-white"></textarea>
+          {errors.message && <p className="text-red-500">{errors.message}</p>}
+
+          <button type="submit" className="button mt-4 dark:bg-blue-600 dark:hover:bg-blue-700">Send Message</button>
+        </form>
       </section>
 
       <Footer />
