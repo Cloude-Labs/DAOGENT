@@ -11,8 +11,8 @@ module.exports = {
   compress: true,
   poweredByHeader: false,
   experimental: {
-    optimizeCss: true, // Optimize CSS for smaller file sizes
-    modern: true, // Serve modern JavaScript
+    optimizeCss: true,
+    modern: true,
   },
   async headers() {
     return [
@@ -21,7 +21,7 @@ module.exports = {
         headers: [
           {
             key: 'Content-Encoding',
-            value: 'br', // Enable Brotli compression
+            value: 'br',
           },
           {
             key: 'Content-Security-Policy',
@@ -56,7 +56,7 @@ module.exports = {
     return [
       {
         source: '/:slug',
-        destination: '/404',
+        destination: '/404', // Redirect all unmatched paths to 404 page
       },
     ];
   },
