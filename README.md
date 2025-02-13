@@ -65,7 +65,7 @@ DAOGENT is an open-source, community-driven project. Whether you're a developer,
 
 ## Stay Connected  
 
-- **Website:** [DAOGENT.io](https://www.daogent.one)  
-- **Twitter:** [@DAOGENT_AI](https://x.com/daogent_sol)  
+- **Website:** [DAOGENT](https://www.daogent.one)  
+- **Twitter:** [@DAOGENT_SOL](https://x.com/daogent_sol)  
 
 The future of decentralized governance is here. DAOGENT empowers DAOs with AI-driven efficiency, ensuring that community decision-making remains transparent, structured, and scalable.  
