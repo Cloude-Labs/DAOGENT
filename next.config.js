@@ -6,4 +6,5 @@ module.exports = {
     unoptimized: true,
   },
   trailingSlash: true, // Added trailingSlash for static site export compatibility
+  generateEtags: false, // Disabled ETag generation for improved caching
 };
