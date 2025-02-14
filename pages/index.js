@@ -40,6 +40,9 @@ export default function Home() {
         <h2>Get Involved</h2>
         <p>DAOGENT is open-source. Join us on GitHub and help shape the future of decentralized governance.</p>
         <a href="https://github.com/Cloude-Labs/DAOGENT" className="button">Join on GitHub</a>
+        
+        {/* New "Join the Community" button */}
+        <a href="https://discord.gg/samplelink" className="button mt-4">Join the Community</a>
       </section>
 
       <Footer />
