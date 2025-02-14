@@ -2,5 +2,6 @@
 "scripts": {
   "build": "next build",
   "export": "next export",
-  "deploy": "gh-pages -d out"
+  "deploy": "gh-pages -d out",
+  "predeploy": "npm run build && npm run export" // Added predeploy script for automation
 }
