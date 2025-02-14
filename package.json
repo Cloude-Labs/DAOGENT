@@ -3,5 +3,6 @@
   "build": "next build",
   "export": "next export",
   "deploy": "gh-pages -d out",
-  "predeploy": "npm run build && npm run export" // Added predeploy script for automation
+  "predeploy": "npm run clean && npm run build && npm run export", // Updated predeploy script to include clean
+  "clean": "rm -rf out" // Added clean script to remove old build files
 }
