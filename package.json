@@ -4,7 +4,8 @@
   "export": "next export",
   "deploy": "gh-pages -d out",
   "predeploy": "npm run clean && npm run build && npm run export", // Updated predeploy script to include clean
-  "clean": "rimraf out" // Improved clean script for cross-platform compatibility
+  "clean": "rimraf out", // Improved clean script for cross-platform compatibility
+  "postdeploy": "echo 'Deployment successful!'" // Added postdeploy script for confirmation
 },
 "devDependencies": {
   "rimraf": "latest" // Added rimraf for consistent file removal
