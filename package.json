@@ -4,11 +4,13 @@
     "build": "next build",
     "export": "next export",
     "deploy": "gh-pages -d out",
-    "predeploy": "npm run clean && npm run build && npm run export", // Updated predeploy script to include clean
+    "predeploy": "npm run clean && npm run build && npm run export && npm run version", // Updated predeploy script to include version update
     "clean": "rimraf out", // Improved clean script for cross-platform compatibility
-    "postdeploy": "echo 'Deployment successful!'" // Added postdeploy script for confirmation
+    "postdeploy": "echo 'Deployment successful!'", // Added postdeploy script for confirmation
+    "version": "npm version patch" // Added versioning script to bump version before deploying
   },
   "devDependencies": {
-    "rimraf": "latest" // Added rimraf for consistent file removal
+    "rimraf": "latest", // Added rimraf for consistent file removal
+    "gh-pages": "^3.2.3" // Added gh-pages for deployment
   }
 }
