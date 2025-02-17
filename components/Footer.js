@@ -11,6 +11,10 @@ export default function Footer() {
         <a href="https://twitter.com/DAOGENT_AI">Twitter</a> | 
         <a href="#">Discord</a>
       </p>
+      {/* New Privacy Policy link */}
+      <p>
+        <a href="/privacy-policy" className="privacy-policy-link">Privacy Policy</a>
+      </p>
       <button onClick={scrollToTop} className="back-to-top">Back to Top</button>
     </footer>
   );
