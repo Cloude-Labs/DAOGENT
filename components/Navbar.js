@@ -23,6 +23,8 @@ export default function Navbar() {
         <li><Link href="#about">About</Link></li>
         <li><Link href="#features">Features</Link></li>
         <li><a href="https://github.com/Cloude-Labs/DAOGENT">GitHub</a></li>
+        {/* New Login button */}
+        <li><Link href="/login" className="login-btn">Login</Link></li> {/* Added Login button */}
       </ul>
     </nav>
   );
