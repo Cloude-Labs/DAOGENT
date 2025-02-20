@@ -1,10 +1,12 @@
 const isProd = process.env.NODE_ENV === 'production';
+const basePath = process.env.BASE_PATH || '/DAOGENT/';
 
 module.exports = {
-  assetPrefix: isProd ? '/DAOGENT/' : '',
+  assetPrefix: isProd ? basePath : '',
   images: {
     unoptimized: false,
     domains: ['your-cdn.com'],
+    formats: ['image/avif', 'image/webp'], // Added WebP & AVIF support
   },
   trailingSlash: true,
   generateEtags: false,
@@ -21,15 +23,19 @@ module.exports = {
         headers: [
           {
             key: 'Content-Encoding',
-            value: 'br',
+            value: 'br, gzip', // Added gzip for broader support
           },
           {
             key: 'Content-Security-Policy',
-            value: "default-src 'self'; img-src 'self' data: https://your-cdn.com; script-src 'self' 'unsafe-inline';",
+            value: "default-src 'self'; img-src 'self' data: https://your-cdn.com; script-src 'self' 'unsafe-inline' 'unsafe-eval'; object-src 'none';",
           },
           {
             key: 'X-Frame-Options',
             value: 'DENY',
+          },
+          {
+            key: 'X-Robots-Tag',
+            value: 'index, follow', // SEO enhancement
           },
           {
             key: 'Referrer-Policy',
@@ -55,8 +61,8 @@ module.exports = {
   async rewrites() {
     return [
       {
-        source: '/:slug',
-        destination: '/404', // Redirect all unmatched paths to 404 page
+        source: '/special-route/:slug',
+        destination: '/custom-handler/:slug', // Improved specific rewrites
       },
     ];
   },
