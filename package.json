@@ -6,13 +6,17 @@
     "deploy": "gh-pages -d out",
     "predeploy": "npm run clean && npm run lint && npm run format && npm run build && npm run export && npm run version",
     "clean": "rimraf out",
+    "clean:deps": "npm prune && npm dedupe", // Added script to clean dependencies
     "postdeploy": "echo 'DAOGENT successfully deployed!'", 
     "version": "npm version patch",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "format": "prettier --write .",
+    "test": "jest", // Added test script for CI/CD readiness
+    "security": "npm audit fix --force", // Added security check
     "prepare": "husky install",
     "commit": "cz",
-    "start": "next dev"
+    "start": "next dev",
+    "analyze": "cross-env ANALYZE=true next build" // Added script for bundle analysis
   },
   "devDependencies": {
     "rimraf": "latest",
@@ -23,7 +27,9 @@
     "husky": "^8.0.3",
     "lint-staged": "^14.0.0",
     "commitizen": "^4.3.0",
-    "cz-conventional-changelog": "^3.3.0"
+    "cz-conventional-changelog": "^3.3.0",
+    "jest": "^29.0.0", // Added Jest for testing
+    "cross-env": "^7.0.3" // Added cross-env for environment variables
   },
   "lint-staged": {
     "*.ts": ["eslint --fix", "prettier --write"],
