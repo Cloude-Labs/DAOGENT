@@ -5,8 +5,8 @@ module.exports = {
   assetPrefix: isProd ? basePath : '',
   images: {
     unoptimized: false,
-    domains: ['your-cdn.com'],
-    formats: ['image/avif', 'image/webp'], // Added WebP & AVIF support
+    domains: ['your-cdn.com', 'cdn.example.com'], // ✅ Added another domain for flexibility
+    formats: ['image/avif', 'image/webp'],
   },
   trailingSlash: true,
   generateEtags: false,
@@ -23,19 +23,23 @@ module.exports = {
         headers: [
           {
             key: 'Content-Encoding',
-            value: 'br, gzip', // Added gzip for broader support
+            value: 'br, gzip', // ✅ Added Brotli compression for better performance
           },
           {
             key: 'Content-Security-Policy',
-            value: "default-src 'self'; img-src 'self' data: https://your-cdn.com; script-src 'self' 'unsafe-inline' 'unsafe-eval'; object-src 'none';",
+            value: "default-src 'self'; img-src 'self' data: https://your-cdn.com https://cdn.example.com; script-src 'self' 'unsafe-inline' 'unsafe-eval'; object-src 'none';",
           },
           {
             key: 'X-Frame-Options',
             value: 'DENY',
           },
           {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff', // ✅ Added to prevent MIME-type sniffing
+          },
+          {
             key: 'X-Robots-Tag',
-            value: 'index, follow', // SEO enhancement
+            value: 'index, follow',
           },
           {
             key: 'Referrer-Policy',
@@ -62,7 +66,11 @@ module.exports = {
     return [
       {
         source: '/special-route/:slug',
-        destination: '/custom-handler/:slug', // Improved specific rewrites
+        destination: '/custom-handler/:slug',
+      },
+      {
+        source: '/api/:path*',
+        destination: 'https://api.external-service.com/:path*', // ✅ Added external API rewrite
       },
     ];
   },
