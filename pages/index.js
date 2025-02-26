@@ -6,9 +6,10 @@ import styles from '../styles/global.css';
 import { useState, useCallback, useRef } from 'react';
 
 export default function Home() {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-  const [errors, setErrors] = useState({ name: '', email: '', message: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', message: '', botField: '' });
+  const [errors, setErrors] = useState({ name: '', email: '', message: '', botField: '' });
   const [successMessage, setSuccessMessage] = useState('');
+  const [captchaToken, setCaptchaToken] = useState('');
   const formRef = useRef<HTMLFormElement>(null);
 
   const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -16,10 +17,18 @@ export default function Home() {
     setErrors({ ...errors, [e.target.name]: '' });
   }, [formData, errors]);
 
+  const handleCaptchaVerify = useCallback(() => {
+    window.grecaptcha.ready(() => {
+      window.grecaptcha.execute('your-site-key', { action: 'submit' }).then((token) => {
+        setCaptchaToken(token);
+      });
+    });
+  }, []);
+
   const handleSubmit = useCallback((e: React.FormEvent) => {
     e.preventDefault();
 
-    let newErrors = { name: '', email: '', message: '' };
+    let newErrors = { name: '', email: '', message: '', botField: '' };
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!formData.name.trim()) newErrors.name = 'Name is required';
@@ -29,6 +38,8 @@ export default function Home() {
       newErrors.email = 'Invalid email format';
     }
     if (!formData.message.trim()) newErrors.message = 'Message is required';
+    if (formData.botField) newErrors.botField = 'Spam detected';
+    if (!captchaToken) newErrors.message = 'Captcha verification failed';
 
     setErrors(newErrors);
 
@@ -37,15 +48,16 @@ export default function Home() {
     }
 
     setSuccessMessage('Your message has been sent!');
-    formRef.current?.reset(); 
+    formRef.current?.reset();
     setTimeout(() => setSuccessMessage(''), 5000);
-  }, [formData]);
+  }, [formData, captchaToken]);
 
   return (
     <div className="dark:bg-gray-900 dark:text-white transition-colors duration-300">
       <Head>
         <title>DAOGENT - AI-Powered DAO Companion</title>
         <meta name="description" content="AI-powered governance for decentralized communities." />
+        <script src="https://www.google.com/recaptcha/api.js?render=your-site-key" async defer></script>
       </Head>
 
       <Navbar />
@@ -71,7 +83,10 @@ export default function Home() {
           <textarea id="message" name="message" placeholder="Your Message" onChange={handleInputChange} className="dark:bg-gray-900 dark:text-white"></textarea>
           {errors.message && <p className="text-red-500">{errors.message}</p>}
 
-          <button type="submit" className="button mt-4 dark:bg-blue-600 dark:hover:bg-blue-700">Send Message</button>
+          {/* Honeypot Field for Spam Prevention */}
+          <input type="text" name="botField" style={{ display: 'none' }} onChange={handleInputChange} />
+
+          <button type="submit" onClick={handleCaptchaVerify} className="button mt-4 dark:bg-blue-600 dark:hover:bg-blue-700">Send Message</button>
 
           {successMessage && <p className="text-green-500 mt-2">{successMessage}</p>}
         </form>
