@@ -61,6 +61,7 @@ export default function Navbar() {
           <li><Link href="/">Home</Link></li>
           <li><Link href="#about">About</Link></li>
           <li><Link href="#features">Features</Link></li>
+          <li><Link href="#faq">FAQ</Link></li> {/* Added FAQ link */}
           <li>
             <a href="https://github.com/Cloude-Labs/DAOGENT" target="_blank" rel="noopener noreferrer">
               GitHub
