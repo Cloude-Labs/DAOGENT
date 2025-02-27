@@ -92,6 +92,29 @@ export default function Home() {
         </form>
       </section>
 
+      {/* FAQ Section */}
+      <section className="faq dark:bg-gray-800 p-6 rounded-md">
+        <h2 className="dark:text-gray-200">Frequently Asked Questions</h2>
+        <div className="faq-item">
+          <h3 className="dark:text-gray-100">What is DAOGENT?</h3>
+          <p className="dark:text-gray-300">
+            DAOGENT is an AI-powered governance assistant designed to help decentralized communities streamline decision-making.
+          </p>
+        </div>
+        <div className="faq-item">
+          <h3 className="dark:text-gray-100">How does it work?</h3>
+          <p className="dark:text-gray-300">
+            DAOGENT integrates AI and automation to assist DAOs in governance, voting, and proposal management.
+          </p>
+        </div>
+        <div className="faq-item">
+          <h3 className="dark:text-gray-100">How can I contact support?</h3>
+          <p className="dark:text-gray-300">
+            You can reach us via the contact form above or through our official Discord and Twitter channels.
+          </p>
+        </div>
+      </section>
+
       <Footer />
     </div>
   );
